@@ -1,7 +1,6 @@
 package com.pm.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,11 +31,15 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public void deleteProduct(Long id) {
+	public String  deleteProduct(Long id) {
 		
 		Product product = productRepository.findById(id).get();
-		if(product != null)
+		if(product != null) {
 			productRepository.deleteById(id);
+		return "Product Deleted Successfully !!!";
+		}
+		
+		return "Something wrong on server";
 	}
 
 }
